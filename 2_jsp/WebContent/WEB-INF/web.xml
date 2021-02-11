@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>2_jsp</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+  <filter-name>encoding</filter-name>
+  <filter-class>com.kh.common.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>encoding</filter-name>
+  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!--
+  	예외를 지정
+  	CustomException을 상속받는 DataAccessException과 ToAlertException을 모두 
+  -->
+  
+  <!--에러가 발생할 경우 자동으로 이동시킬 페이지를 지정-->
+ <!--  <error-page>
+  	예외를 지정
+  	<exception-type>com.kh.common.exception.CustomException</exception-type>
+  	해당 예외가 발생했을 때 이동 시킬 jsp파일의 경로
+  	<location>/exception</location> 
+  </error-page>
+   -->
+  <!-- response 상태 코드에 따라서 에러페이지로 이동-->
+  <error-page>
+  <error-code>404</error-code>
+  <location>/WEB-INF/view/common/404_error_page.html</location>
+  </error-page>
+  
+  <error-page>
+  <error-code>500</error-code>
+  <location>/WEB-INF/view/common/error_page.jsp</location>
+  </error-page>
+  
+  
+  
+  
+  
+</web-app>

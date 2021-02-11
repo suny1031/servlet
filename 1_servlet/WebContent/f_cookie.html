@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+.note{
+min-height: 10vh;
+background-color: skyblue;
+
+}
+
+
+</style>
+</head>
+<body>
+	<h1>Cookie</h1>
+	<pre>
+	Cookie는 서버가 브라우저에게 응답할 때 헤더에 저장해두는 작은 데이터 조각
+	서버는 클라이언트와 통신(요청->응답)이 끝나고 나면 클라이언트의 정보를 가지고 있지 않다
+	따라서 서버는 클라이언트가 다시 방문하더라도 해당 클라이언트가 처음온 클라이언트인지 
+	아니면 재방문한 클라이언트인지 알 수가 없다
+	서버가 응답할때 응답 헤더에 쿠키 데이터를 넣어서 보내면
+	이후 브라우저는, 해당 서버와 통신할 때 마다 request 헤더에 서버가 넣어준 쿠키를 담아서 보낸다
+	서버는 해당 쿠키를 통해 브라우저를 식별할 수 있게 된다
+	</pre>
+	<form action="/servlet/cookie">
+	<label>프로그래밍 언어 : <input type = "text" list = "lang" name = "search" id = "search"></label>
+	<datalist id = "lang">
+		<option value = "JAVA"></option>
+		<option value = "ORACLE"></option>
+		<option value = "HTML"></option>
+		<option value = "CSS"></option>
+		<option value = "JAVASCRIPT"></option>
+	</datalist>
+	<button id = "btn_send" >전송</button>
+	</form>
+	<div id = "cookie-note" class = "note"></div>
+	<script type="text/javascript">
+	//자바스크립트를 사용해 쿠키 확인 및 생성
+	document.querySelector('#cookie-note').innerHTML += document.cookie;
+	//쿠키확인
+	document.querySelector('#cookie-note').innerHTML += '<hr>';
+	
+	//document.cookie = 'js-cookie=javaScript-Cookie; Path=/servlet/cookie;';
+	//쿠키 생성
+	document.querySelector('#cookie-note').innerHTML += document.cookie;
+	//쿠키 확인
+	//pre와 js-cookie
+	
+	
+	
+	//쿠키를 데이터를 저장하는 용도로 쓰이지 않는 이유
+	//사용기간이 정해져 있다
+	//cookie의 Max-age를 지정하지 않으면 session 스코프를 가지게 된다
+	//session 스코프는 브라우저창을 끄면 cookie도 같이 사라진다
+	//용량 제한적이다
+	//쿠키는 최대 4kb
+	//도메인당 쿠키는 20개만 생성 할 수 있다
+	
+	//그래서 브라우저에서는 storage를 제공 해주고있다
+	//sessionStorage/localStorage
+	//localStorage : 용량이5~10mb(브라우저 별 상이)
+	//				키와 value 쌍을 만드는데 개수 제한이 없다
+	//				cookie는 value에 키=value 형태의 문자열로 저장을 하기 때문에 데이터를 꺼내서
+	//				사용할 때 파싱이 번거로운 단점이 있지만
+	//				Storage는 저장하는 형태에 제약이 없기 때문에 JSON객체를 사용해 간단히 파실할 수 있다
+	//				기간 제한이 없습ㄴ다(사용자가 강제로 삭제하지 않는다면)
+	
+	
+	document.querySelector('#btn_send').addEventListener('click',()=>{
+	let myStorage = window.localStorage;
+
+	//사용자가 입력한 값
+	let keyword = document.querySelector('#search').value;
+	
+	
+	//읽기
+	//사용자가 이전에 한번이라도 조회를 한 이력이 있는지 확인
+	if (myStorage.getItem(keyword)) {
+		//null이면 false / 1이면 true
+		//수정
+		//사용자가 입력한 값을 키로 , 사용자가 해당 검색어를 조회한 횟수 + 1을 value로 넣어준다
+		myStorage.setItem(keyword,Number(myStorage.getItem(keyword))+1);
+	}else{
+		//추가 및 수정
+		myStorage.setItem(keyword,"1");
+
+	}
+		
+	})
+	
+/* 	//화면에 출력
+	let storage = window.localStorage;
+
+	//과제 ! : localStorage에 있는 모든 값을 출력하는데 까지 성공
+	//많이 조회한 순서로 정렬
+	for (let i = 0; i < storage.length; i++) {
+		//i 인덱스에 존재하는 키 값을 반환(프로그래밍 언어이름)
+		let key = storage.key(i);
+		let rankStr = `<br>${key}: ${storage.getItem(key)}회<br>`;
+		document.querySelector('#cookie-note').innerHTML +=rankStr;
+	}
+	
+	 */
+	 
+	 let storage = window.localStorage;
+	 
+	 let list = [];
+	 
+	 for (let i = 0; i < storage.length; i++) {
+	 	list.push([Number(storage.getItem(storage.key(i))),storage.key(i)])
+	 	//list에 storage추가 근데 숫자를 먼저 추가
+	 }	
+		 list.sort((a,b)=>
+			 Number(a[0])-Number(b[0]));
+
+	 //숫자로 내림차순 정렬
+	 console.dir(list);
+	 storage.clear();
+	 //storage싹 비워버림
+	 
+	 for (let i = 0; i < list.length; i++) {
+		 storage.setItem(list[i][1],list[i][0]);
+		 document.querySelector('#cookie-note').innerHTML += `<br>${list[i][1]} : ${list[i][0]}<br>`;
+	 }
+	 //storage에 추가
+	 //div에 출력
+	 
+	 
+	</script>
+</body>
+</html>

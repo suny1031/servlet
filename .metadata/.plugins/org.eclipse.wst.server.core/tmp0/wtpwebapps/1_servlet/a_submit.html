@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--
+action : url 
+method : http Method
+		 ->HTML5에서는 get/post 메서드만 지원
+enctype : mine타입 지정(파일전송시)
+-->
+<form action= "/servlet/first" method = "post" enctype = "application/x-www-form-urlencoded">
+	<!--method : post body에 값이 담겨서감 -->
+	<h1>사용하실 닉네임을 입력하세요</h1>
+	<!--
+	input 태그에 name 속성에 지정한 값이 파라미터 name,
+	input 태그의 value 속성에 담긴 값이 parameter value로 넘어온다
+	-->
+	<input type = "text" name = "nick">
+	<button>입장하기</button>
+
+
+</form>
+</body>
+</html>

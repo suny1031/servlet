@@ -1,0 +1,43 @@
+1610414374390	Delete element
+1610414578806	Rename package 'com.kh.jsp'
+1610414608031	Rename type 'indexcontroller'
+1610420540987	Rename package 'com.kh.controller'
+1610420611026	Delete element
+1610420692002	Delete element
+1610420718818	Rename package 'com.kh.statement.controller'
+1610420755348	Move compilation unit
+1610420775960	Rename package 'com.kh.index.controller'
+1610422028360	Delete element
+1610423005931	Rename package 'index.controller'
+1610423013593	Rename package 'statement.controller'
+1610423096403	Delete element
+1610423147879	Delete element
+1610423190676	Delete element
+1610423194026	Delete element
+1610423242601	Rename package 'com.kh2.statement.controller'
+1610423246293	Delete element
+1610423249728	Delete element
+1610426845262	Move 2 resources to 'el_jstl'
+1610517052228	Delete element
+1610517055334	Delete element
+1610517786826	Delete element
+1610517805773	Delete element
+1610588240392	Rename package 'com.kh.common'
+1610590422286	Rename type 'member'
+1610590530146	Copy compilation unit
+1610590538813	Delete element
+1610594163376	Rename type 'memberController'
+1610599951400	Rename type 'CustomException'
+1610599988941	Rename compilation unit 'toAlertException.java'
+1610617064131	Copy package
+1610617119468	Copy package
+1610617150970	Delete element
+1610617154108	Delete element
+1610617166173	Copy packages
+1610617176111	Delete element
+1610617178599	Delete element
+1610617196843	Copy compilation unit
+1610617209390	Copy compilation unit
+1610617260783	Delete element
+1610617264667	Delete element
+1610617267308	Delete element
